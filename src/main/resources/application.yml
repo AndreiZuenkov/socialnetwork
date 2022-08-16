@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost/socialnetworkdb
+    username: postgres
+    password: s
+---
+spring:
+  jpa:
+    generate-ddl: true
