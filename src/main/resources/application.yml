@@ -7,3 +7,26 @@ spring:
 spring:
   jpa:
     generate-ddl: true
+---
+spring:
+  main:
+    allow-bean-definition-overriding: true
+---
+spring:
+  oauth2:
+    client:
+      clientId: some-secret.apps.googleusercontent.com
+      clientSecret: very-secret
+      accessTokenUri: https://www.googleapis.com/oauth2/v4/token
+      userAuthorizationUri: https://accounts.google.com/o/oauth2/v2/auth
+      clientAuthenticationScheme: form
+      scope: openid,email,profile
+---
+spring:
+  oauth2:
+    resource:
+      userInfoUri: https://www.googleapis.com/oauth2/v3/userinfo
+      preferTokenInfo: true
+
+
+

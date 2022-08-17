@@ -5,6 +5,7 @@ import com.sadstatue.socialnetwork.persistence.model.Message;
 import com.sadstatue.socialnetwork.persistence.repository.IMessageRepo;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,10 +32,6 @@ public class MainController {
     @GetMapping("{id}")
     public Message getMessage(@PathVariable String id) {
 
-//        Message messageFromDb=iMessageRepo.findById(message.getId()).stream()
-//                .findFirst()
-//                .orElseThrow(NotFoundException::new);
-
         return iMessageRepo.findById(Long.parseLong(id)).orElseThrow(NotFoundException::new);
 
     }
@@ -42,13 +39,13 @@ public class MainController {
     @PostMapping()
     public Message createMessage(@RequestBody Message message) {
 
-        return iMessageRepo.save(message);
+
+        return iMessageRepo.save(new Message(message.getText(), LocalDateTime.now()));
     }
 
     @PutMapping("{id}")
     public Message updateMessage(@RequestBody Message message, @PathVariable String id) {
 
-//        BeanUtils.copyProperties(message, iMessageRepo.findById(Long.parseLong(id)), "id");
 
         Message updatedMessage = iMessageRepo.findById(Long.parseLong(id))
                 .orElseThrow(NotFoundException::new);
